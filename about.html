@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Story</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Ysabeau+Infant:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="">
+    </head>
+    <body id = aboutbackground>
+        <div class="header header-sticky">
+            <div class="nav-left">
+                <a id="about" href="about.html">MY STORY</a>
+            </div>
+            
+            <nav class="nav-right">
+                <a href="home.html"><b>Home</b></a>
+                <a href="archive.html"><b>The Collection</b></a>
+                <a href="turntable.html"><b>Record Room</b></a>
+            </nav>
+        </div>
+
+        <section class="about-row">
+            <div class="about-img">
+                <img src="img/gcollection.png" alt="">
+            </div>
+
+            <div class="about-text">
+                <h2>BACKGROUND</h2>
+                <p>My passion for vinyl started when I was young, sitting next to my grandma while she played me some of her favorite records - <em>Bennie and the Jets</em>by Elton John, or <em>Can't Help Falling in Love</em> by Elvis Presley. She would always tell me about where each of the record came from, and over time, some of these songs became part of my childhood.</p>
+            </div>
+        </section>
+
+        <section class="about-row">
+            <div class="about-text">
+                <h2>MY STORY</h2>
+                <p>When my grandma passed her vinyl collection down to me, I wanted to carry on what she started.</p>
+
+                <p>Today, that passion turned into a journey. I find myself searching for records in small shops and side streets around the world, each one holding a story of where I've been.</p>
+            </div>
+
+            <div class="about-img">
+                <img src="img/recshop2.png" alt="">
+            </div>
+        </section>
+
+        <div class="about-divider"></div>
+
+        <section class="map-section">
+            <h2 class="map-title">PLACES I FOUND RECORDS</h2>
+            <p class="map-intro">
+                Below are some of the locations and shops where I've picked up records that you'll find in my collection
+            </p>
+            <div id="vinyl-map"></div>
+        </section>
+        
+        <!--Reference https://leafletjs.com/examples/quick-start/ with modifications made on my knowledge of javascript -->
+        <script 
+            src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""
+            ></script>
+
+            <script>
+            // Initializing the map
+            const map = L.map('vinyl-map').setView([20, 0], 2);
+
+            // Base tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // places where i got my vinyls
+            const spots = [
+                {
+                coords: [35.489043, 139.628412],
+                text: "Hakuraku, Japan. Gokuraku."
+                },
+                {
+                coords: [13.746719, 100.510542],
+                text: "Bangkok, Thailand M-Tanakorn Records"
+                },
+                {
+                coords: [37.800320, -122.407785],
+                text: "San Francisco, United States - Out of Sight Records"
+                }
+            ];
+
+            spots.forEach(spot => {L.marker(spot.coords).addTo(map) .bindPopup(spot.text);
+            });
+        </script>
+    </body>
+</html>
